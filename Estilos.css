@@ -1,11 +1,12 @@
-/* Estilos consolidados de prueba.html - Traslados de inline styles a CSS */
 :root {
   --accent: #0d22d1;
   --light-blue: aliceblue;
   --gap: 30px;
+  --slides: 7;
+  --duration: calc(var(--slides) * 5s);
 }
 
-* {
+.div {
   box-sizing: border-box;
 }
 
@@ -20,7 +21,7 @@ main {
   padding: 20px;
 }
 
-/* ===== SECCIONES ===== */
+
 .section-white {
   background-color: white;
   padding: 24px;
@@ -35,7 +36,7 @@ main {
   margin-bottom: 20px;
 }
 
-/* ===== TÍTULOS ===== */
+
 .section-title {
   background-color: var(--accent);
   color: var(--light-blue);
@@ -43,14 +44,13 @@ main {
   margin: 0 0 20px 0;
 }
 
-/* ===== OFERTA EDUCATIVA ===== */
+
 .bloqueflex {
   display: flex;
   gap: var(--gap);
   align-items: flex-start;
 }
 
-/* Force children to split 50/50 when used for oferta educativa */
 .bloqueflex > .contenedor,
 .bloqueflex > .texto-decha-oferta {
   flex: 1 1 50%;
@@ -60,47 +60,47 @@ main {
 
 .contenedor {
   display: flex;
-  flex-direction: row; /* two columns */
+  flex-direction: row;
   gap: 10px;
   margin-left: 0;
 }
 
 .contenedor > div {
   display: flex;
-  flex-direction: column; /* stack images vertically */
+  flex-direction: column;
   gap: 10px;
   flex: 1;
 }
 
 .fotoferta {
   transition: transform 0.25s ease;
-  flex: 0 0 auto; /* don't force stretching; keep natural height */
+  flex: 0 0 auto;
   overflow: hidden;
+  width: 200px;
 }
 
 .fotoferta:hover {
   transform: scale(1.03);
 }
 
-/* Ensure images show with a capped height so the caption is visible below */
-.fotoferta figure{
+.fotoferta figure {
   height: auto;
   margin: 0;
   display: flex;
   flex-direction: column;
 }
 
-.fotoferta figure img{
+.fotoferta figure img {
   width: 100%;
   height: auto;
-  max-height: 220px; /* limit image height so caption remains visible */
+  max-height: 220px;
   object-fit: cover;
   display: block;
   padding: 0;
   margin: 0;
 }
 
-.fotoferta figure figcaption{
+.fotoferta figure figcaption {
   padding: 8px 6px;
   text-align: center;
   background: transparent;
@@ -117,7 +117,7 @@ main {
   text-align: center;
 }
 
-/* Cuadro descriptivo OFERTA EDUCATIVA */
+
 .texto-decha-oferta {
   background-color: var(--accent);
   color: var(--light-blue);
@@ -145,7 +145,7 @@ main {
   line-height: 1.5;
 }
 
-/* Botón Saber más */
+
 .btn-saber-mas {
   display: inline-block;
   background-color: var(--light-blue);
@@ -165,11 +165,10 @@ main {
   transform: scale(1.2);
 }
 
-/* ===== INSTALACIONES ===== */
 .instalaciones-layout {
   display: flex;
   gap: 15px;
-  align-items: stretch; /* make both columns equal height */
+  align-items: stretch;
 }
 
 .carrusel-instalaciones {
@@ -179,7 +178,7 @@ main {
 
 .fotos-carrusel-instalaciones {
   aspect-ratio: 16/9;
-  flex: 2; /* make carousel larger relative to the text */
+  flex: 2;
 }
 
 .carrusel-div {
@@ -198,19 +197,13 @@ main {
   line-height: 0;
 }
 
-/* Carrusel CSS puro */
-:root {
-  --slides: 7;
-  --duration: calc(var(--slides) * 5s);
-}
-
 .fotos-track {
   display: flex;
   width: calc(var(--slides) * 100%);
   height: 100%;
   align-items: stretch;
   will-change: transform;
-  animation: carousel var(--duration) steps(var(--slides)) infinite;
+  animation: carousel var(--duration) linear infinite; 
 }
 
 .fotos-track img {
@@ -228,7 +221,7 @@ main {
     transform: translateX(0%);
   }
   to {
-    transform: translateX(calc(-100% * (var(--slides) - 1)));
+    transform: translateX(-100%);
   }
 }
 
@@ -240,11 +233,10 @@ main {
   bottom: 10px;
 }
 
-/* Texto de Instalaciones */
 .texto-instalaciones {
   flex: 1;
   height: auto;
-  min-height: 0; /* allow stretching to match carousel */
+  min-height: 0;
   background-color: var(--accent);
   color: var(--light-blue);
   padding: 20px;
@@ -267,9 +259,7 @@ main {
   line-height: 1.5;
 }
 
-/* ===== CONTACTO ===== */
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .instalaciones-layout {
     flex-direction: column;
@@ -298,4 +288,35 @@ main {
     padding: 12px 24px;
     font-size: 16px;
   }
+}
+.tlf-contacto {
+  
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--accent);
+  color: var(--light-blue);
+  border: solid;
+  padding: 10px;
+}
+.contacto-direccion{
+    bottom: 20px;
+  right: 20px;
+  background-color: var(--accent);
+  color: var(--light-blue);
+  border: solid;
+  padding: 10px;
+}
+.email-contacto {
+  
+  bottom: 10px;
+  right: 20px;
+  background-color: var(--accent);
+  color: var(--light-blue);
+  border: solid;
+  padding: 10px;
+}
+iframe {
+  width: 400px;
+  height: 300px;
+  border: 0;
 }
