@@ -1,0 +1,301 @@
+/* Estilos consolidados de prueba.html - Traslados de inline styles a CSS */
+:root {
+  --accent: #0d22d1;
+  --light-blue: aliceblue;
+  --gap: 30px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  padding: 20px;
+}
+
+/* ===== SECCIONES ===== */
+.section-white {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.section-blue {
+  background-color: rgba(13, 34, 209, 0.12);
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* ===== TÍTULOS ===== */
+.section-title {
+  background-color: var(--accent);
+  color: var(--light-blue);
+  padding: 20px;
+  margin: 0 0 20px 0;
+}
+
+/* ===== OFERTA EDUCATIVA ===== */
+.bloqueflex {
+  display: flex;
+  gap: var(--gap);
+  align-items: flex-start;
+}
+
+/* Force children to split 50/50 when used for oferta educativa */
+.bloqueflex > .contenedor,
+.bloqueflex > .texto-decha-oferta {
+  flex: 1 1 50%;
+  max-width: 50%;
+  min-width: 0;
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: row; /* two columns */
+  gap: 10px;
+  margin-left: 0;
+}
+
+.contenedor > div {
+  display: flex;
+  flex-direction: column; /* stack images vertically */
+  gap: 10px;
+  flex: 1;
+}
+
+.fotoferta {
+  transition: transform 0.25s ease;
+  flex: 0 0 auto; /* don't force stretching; keep natural height */
+  overflow: hidden;
+}
+
+.fotoferta:hover {
+  transform: scale(1.03);
+}
+
+/* Ensure images show with a capped height so the caption is visible below */
+.fotoferta figure{
+  height: auto;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.fotoferta figure img{
+  width: 100%;
+  height: auto;
+  max-height: 220px; /* limit image height so caption remains visible */
+  object-fit: cover;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.fotoferta figure figcaption{
+  padding: 8px 6px;
+  text-align: center;
+  background: transparent;
+  font-weight: 700;
+}
+
+.texto-rojo {
+  color: rgb(196, 39, 39);
+  text-align: center;
+}
+
+.texto-azul {
+  color: #202b8d;
+  text-align: center;
+}
+
+/* Cuadro descriptivo OFERTA EDUCATIVA */
+.texto-decha-oferta {
+  background-color: var(--accent);
+  color: var(--light-blue);
+  height: auto;
+  min-height: 500px;
+  font-weight: 700;
+  padding: 20px;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.texto-decha-oferta h2 {
+  background-color: transparent;
+  color: var(--light-blue);
+  padding: 0;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.texto-decha-oferta p {
+  margin: 0 0 15px 0;
+  line-height: 1.5;
+}
+
+/* Botón Saber más */
+.btn-saber-mas {
+  display: inline-block;
+  background-color: var(--light-blue);
+  color: var(--accent);
+  padding: 15px 35px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 30px;
+  border: 2px solid var(--light-blue);
+  font-size: 18px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.btn-saber-mas:hover {
+  opacity: 0.85;
+  transform: scale(1.2);
+}
+
+/* ===== INSTALACIONES ===== */
+.instalaciones-layout {
+  display: flex;
+  gap: 15px;
+  align-items: stretch; /* make both columns equal height */
+}
+
+.carrusel-instalaciones {
+  flex: 1;
+  min-width: 0;
+}
+
+.fotos-carrusel-instalaciones {
+  aspect-ratio: 16/9;
+  flex: 2; /* make carousel larger relative to the text */
+}
+
+.carrusel-div {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.fotos-carrusel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  box-shadow: 0.25rem 0.5rem rgba(33, 33, 33, 0.15);
+  border-radius: 0.5rem;
+  line-height: 0;
+}
+
+/* Carrusel CSS puro */
+:root {
+  --slides: 7;
+  --duration: calc(var(--slides) * 5s);
+}
+
+.fotos-track {
+  display: flex;
+  width: calc(var(--slides) * 100%);
+  height: 100%;
+  align-items: stretch;
+  will-change: transform;
+  animation: carousel var(--duration) steps(var(--slides)) infinite;
+}
+
+.fotos-track img {
+  width: calc(100% / var(--slides));
+  height: 100%;
+  flex: 0 0 auto;
+  object-fit: cover;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+@keyframes carousel {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(calc(-100% * (var(--slides) - 1)));
+  }
+}
+
+.carrusel-nav {
+  display: none;
+}
+
+.carrusel-nav-instalaciones {
+  bottom: 10px;
+}
+
+/* Texto de Instalaciones */
+.texto-instalaciones {
+  flex: 1;
+  height: auto;
+  min-height: 0; /* allow stretching to match carousel */
+  background-color: var(--accent);
+  color: var(--light-blue);
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.texto-instalaciones h3 {
+  color: var(--light-blue);
+  margin-top: 0;
+  background-color: transparent;
+  padding: 0;
+  font-size: 1.1rem;
+}
+
+.texto-instalaciones p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ===== CONTACTO ===== */
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .instalaciones-layout {
+    flex-direction: column;
+  }
+
+  .texto-decha-oferta {
+    width: 100%;
+    max-width: none;
+  }
+
+  .fotos-carrusel-instalaciones {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .bloqueflex {
+    flex-direction: column;
+  }
+
+  .contenedor {
+    margin-left: 0;
+  }
+
+  .btn-saber-mas {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+}
